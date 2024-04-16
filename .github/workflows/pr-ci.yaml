@@ -1,6 +1,6 @@
 name: Pull Request CI
 on:
-  pull_request:
+  push:
     branches:
       - 1.17.x
       - 1.15.x
