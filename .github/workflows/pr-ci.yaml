@@ -8,6 +8,7 @@ on:
       - 2.x
       - 2.2.x
       - master
+      - ELY-2235
 
 jobs:
   build:
@@ -15,12 +16,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        java-version: [11, 17]
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 11
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ matrix.java-version }}
       # ELY-2204 - Temporarily preventing OidcTest from running on macOS since there
       # are intermittent issues with starting up the Docker container.
       #- if: matrix.os == 'macos-latest'
